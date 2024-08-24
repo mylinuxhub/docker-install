@@ -1,0 +1,22 @@
+touch network.yml
+Add below date in network.yml file
+   subnet_ipv4: "x.x.x.x/16"
+   gateway_ip4: "x.x.x.x"
+   ip_range_ipv4: "x.x.x.x/24"
+
+Create docker swarm
+    #docker swarm init
+Create varalbles 
+    #ip_range=$(grep -e "^ip_r" netowrk.yml | awk -F": " '{print $2}' |  tr -d '"')
+    #getway=$(grep -e "^gateway" netowrk.yml | awk -F": " '{print $2}' |  tr -d '"')
+    #subnet=$(grep -e "^subnet" netowrk.yml | awk -F": " '{print $2}' |  tr -d '"')
+
+Create docker network
+
+    #docker network create --driver overlay --attachable --subnet=${subnet} --gateway=${getway} --ip-range=${ip_range} "mytest_net"
+
+Remove docker network
+   #docker network rm <network_name_or_id>
+   #docker node rm localhost.localdomain
+Leave from docker swarm
+    #docker swarm leave --force
